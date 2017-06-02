@@ -21,6 +21,8 @@ namespace oeEngineSDK
   protected:
     int m_iScrWidth;
     int m_iScrHeight;
+    int m_cambio1;
+    float m_cambio2;
 
     String m_szTitle; // The title bar text
 

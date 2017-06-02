@@ -3,3 +3,4 @@ bin/x64/
 bin/x86/
 intermediate/
 lib/
+*.opendb
