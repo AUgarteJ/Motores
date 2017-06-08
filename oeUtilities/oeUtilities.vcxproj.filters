@@ -16,6 +16,15 @@
     <Filter Include="Header Files\Math">
       <UniqueIdentifier>{02fa3b0f-2eeb-4241-beff-a0e924da4606}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Math\Matrix4">
+      <UniqueIdentifier>{57e1328d-4c88-4d5a-a3dc-e99a34821e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{8e3f5740-ea20-424f-8a37-453a34a9f223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Matrix4">
+      <UniqueIdentifier>{037c2465-0ec6-496d-a7b2-39e0a1736116}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\oePlatformTypes.h">
@@ -27,9 +36,6 @@
     <ClInclude Include="include\oePrerequisites_Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\oeMatrix4D.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
     <ClInclude Include="include\oePlatfomDefines_Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,6 +45,9 @@
     <ClInclude Include="include\oeVector4.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="include\oeMatrix4D.h">
+      <Filter>Header Files\Math\Matrix4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\oePlatformTypes.cpp">
@@ -47,11 +56,11 @@
     <ClCompile Include="src\win32\win32_oeTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\oeMatrix4D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\oePlatformMath.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\oeMatrix4D.cpp">
+      <Filter>Source Files\Math\Matrix4</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

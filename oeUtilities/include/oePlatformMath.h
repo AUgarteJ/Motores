@@ -223,7 +223,7 @@ namespace oeEngineSDK {
     \brief Rounds a value to the lowest
     \param prm_Value Value to be floored
     */
-    static FORCE_INLINE float
+    static  float
       Floor(float prm_Value);
 
 
@@ -232,7 +232,7 @@ namespace oeEngineSDK {
     \brief Rounds a value to the half
     \param prm_Value Value to be half rounded
     */
-    static FORCE_INLINE float
+    static  float
       Round(float prm_Value);
 
     /*!
@@ -240,7 +240,7 @@ namespace oeEngineSDK {
     \brief Rounds a value to the highest
     \param prm_Value Value to be ceiled
     */
-    static FORCE_INLINE float
+    static  float
       Ceil(float prm_Value);
 
     //! Fraccional
@@ -249,7 +249,7 @@ namespace oeEngineSDK {
     \brief Obtains the fractional of a value
     \param prm_Value Value to be fractionalized
     */
-    static FORCE_INLINE float
+    static  float
       Fractional(float prm_Value);
     //! Module
     /*!
@@ -258,7 +258,7 @@ namespace oeEngineSDK {
     \param prm_X Divider
     \param prm_Y Dividend
     */
-    static FORCE_INLINE float
+    static  float
       ModuleFloat(float prm_X, float prm_Y);
     
 
@@ -269,7 +269,7 @@ namespace oeEngineSDK {
     \param prm_Base Base of the power operation
     \param prm_Exponent Exponent of the power operation
     */
-    static FORCE_INLINE float
+    static  float
     Power(float prm_Base, float prm_Exponent);
     //! Exponential
     /*!
@@ -277,47 +277,41 @@ namespace oeEngineSDK {
     \brief Obtains the exponential function of a value
     \param prm_Value Value to obtain the exponential function
     */
-    static FORCE_INLINE float
+    static  float
       Exponential(float prm_Value);
 
 
     //! Natural Logarithm
     /*!
     */
-    static FORCE_INLINE float
-    LogN(float prm_Value) {
-    return (float)std::log(prm_Value);
-    }
+    static  float
+      LogN(float prm_Value);
     //! Binary Logarithm (Base 2)
     /*!
     */
-    //->static FORCE_INLINE float	m_Log2(float prm_Value);
+    //->static  float	m_Log2(float prm_Value);
 
     //! Base 'x' Logarithm
     /*!
     */
-    static FORCE_INLINE float	
-    LogX(float prm_Base, float prm_Value) {
-    return LogN(prm_Base) / LogN(prm_Value);
-    }
+    static  float
+      LogX(float prm_Base, float prm_Value);
 
     //! Square root
     /*!
     */
-    static FORCE_INLINE float	
-    Sqrt(float prm_Value) {
-    return (float)std::sqrt(prm_Value);
-    }
+    static  float
+      Sqrt(float prm_Value);
     //! Square root degrees
     /*!
     */
-    /*   	static FORCE_INLINE C_Degree m_Sqrt(const C_Degree& prm_Value) {
+    /*   	static  C_Degree m_Sqrt(const C_Degree& prm_Value) {
        return C_Degree(m_Sqrt(prm_Value.m_ValueDegrees()));
        }*/
     //! Square root radians
     /*!
     */
-    /*static FORCE_INLINE C_Radian m_Sqrt(const C_Radian& prm_Value) {
+    /*static  C_Radian m_Sqrt(const C_Radian& prm_Value) {
     return C_Radian(m_Sqrt(prm_Value.m_ValueRadians()));
     }*/
 
@@ -325,70 +319,54 @@ namespace oeEngineSDK {
     //! Inverse Square root
     /*!
     */
-    static FORCE_INLINE float
-    InverseSqrt(float prm_F) {
-    return(1.0f / (float)std::sqrt(prm_F));
-    }
+    static  float
+      InverseSqrt(float prm_F);
     //! Inverse Square root 
     /*!
     */
-    static FORCE_INLINE float
-    InvSqrtEst(float prm_F) {
-    return InverseSqrt(prm_F);
-    }
+    static  float
+      InvSqrtEst(float prm_F);
 
     //! CHECK is nan?
     /*!
     */
-    static FORCE_INLINE bool
-    IsNan(float prm_Value) {
-    return ((*(uint32*)&prm_Value) & 0x7FFFFFFF) > 0x7F800000;
-    }
+    static  bool
+      IsNan(float prm_Value);
 
     //! CHECK is finite?
     /*!
     */
-    static FORCE_INLINE bool	IsFinite
-    (float prm_Value) {
-    return ((*(uint32*)&prm_Value) & 0x7F800000) != 0x7F800000;
-    }
+    static  bool	
+    IsFinite(float prm_Value);
 
     //! CHECK is Negative float?
     /*!
     */
-    static FORCE_INLINE bool	IsNegativeFloat
-    (float prm_Value) {
-    return ((*(uint32*)&prm_Value) >= (uint32)0x80800000);
-    }
+    static  bool
+      IsNegativeFloat(float prm_Value);
 
-    //! Trigonometrics
+    //! Trigonometric
     /*!
     */
-    static FORCE_INLINE float	Sine
-    (float prm_Value) {
-    return (float)std::sin(prm_Value);
-    }
+    static  float	
+    Sine(float prm_Value);
 
     /*!
     */
-    static FORCE_INLINE float	Cosine
-    (float prm_Value) {
-    return (float)std::cos(prm_Value);
-    }
+    static  float
+      Cosine(float prm_Value);
 
     /*!
     */
-    static FORCE_INLINE float	Tangent
-    (float prm_Value) {
-    return (float)std::tan(prm_Value);
-    }
+    static  float
+      Tangent(float prm_Value);
 
-    //! Radian trigonometrics
+    //! Radian trigonometric
     /*!
     \fn m_RadianSine
     \brief
     */
-    /*static FORCE_INLINE float	m_RadianSine(const C_Radian& prm_Radian) {
+    /*static  float	m_RadianSine(const C_Radian& prm_Radian) {
     return (float)std::sin(prm_Radian.m_ValueRadians());
     }*/
 
@@ -396,7 +374,7 @@ namespace oeEngineSDK {
     \fn m_RadianCosine
     \brief
     */
-    /*	static FORCE_INLINE float	m_RadianCosine(const C_Radian& prm_Radian) {
+    /*	static  float	m_RadianCosine(const C_Radian& prm_Radian) {
     return (float)std::cos(prm_Radian.m_ValueRadians());
     }*/
 
@@ -404,7 +382,7 @@ namespace oeEngineSDK {
     \fn m_RadianTangent
     \brief
     */
-    /*static FORCE_INLINE float	m_RadianTangent(const C_Radian& prm_Radian) {
+    /*static  float	m_RadianTangent(const C_Radian& prm_Radian) {
     return (float)std::tan(prm_Radian.m_ValueRadians());
     }*/
 
@@ -441,10 +419,9 @@ namespace oeEngineSDK {
     \param prm_B Reference to a scalar
     \param prm_Alpha Reference to the alpha
     */
-    static FORCE_INLINE T		
-    Linear_Interpolation(const T& prm_A, const T& prm_B, const U& prm_Alpha) {
-    return (T)(prm_A + prm_Alpha *(prm_B - prm_A));
-    }
+    static  T	
+    Linear_Interpolation(const T& prm_A, const T& prm_B, const U& prm_Alpha);
+   
 
     template<class T>
     /*!
@@ -453,10 +430,8 @@ namespace oeEngineSDK {
     \param prm_A Reference to a scalar
     \param prm_B Reference to a scalar
     */
-    static FORCE_INLINE	T
-    Minimum(const T& prm_A, const T& prm_B) {
-    return (prm_A < prm_B ? prm_A : prm_B);
-    }
+    static 	T
+      _Minimum(const T& prm_A, const T& prm_B);
 
     template<class T>
     /*!
@@ -465,11 +440,7 @@ namespace oeEngineSDK {
     \param prm_A Reference to a scalar
     \param prm_B Reference to a scalar
     */
-    static FORCE_INLINE T		
-    Maximum(const T& prm_A, const T& prm_B) {
-    return (prm_A > prm_B ? prm_A : prm_B);
-    }
+    static  T
+      _Maximum(const T& prm_A, const T& prm_B);
   };
-
- 
 }
