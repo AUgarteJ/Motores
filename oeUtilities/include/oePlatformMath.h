@@ -212,60 +212,45 @@ namespace oeEngineSDK {
     \brief Truncates a int32 value
     \param prm_Value Value to be truncated
     */
-    static FORCE_INLINE int32	
-     Trunc(float prm_Value) {
-      return (int32)prm_Value; }
-    //! Truncate float
-    /*!
-    \fn m_TruncFloat
-    \brief Truncates a float
-    \param prm_Value Value to be truncated
-    */
     static FORCE_INLINE float
-    TruncFloat(float prm_Value) { 
-    return (float) Trunc(prm_Value); }
+      Trunc(float prm_Value);
+ 
 
+  
     //! Roundings
     /*!
     \fn m_Floor
     \brief Rounds a value to the lowest
     \param prm_Value Value to be floored
     */
-    static FORCE_INLINE int32
-    Floor(float prm_Value) {
-    return Trunc((float)std::floor(prm_Value));
-    }
+    static FORCE_INLINE float
+      Floor(float prm_Value);
+
 
     /*!
     \fn m_Round
     \brief Rounds a value to the half
     \param prm_Value Value to be half rounded
     */
-    static FORCE_INLINE int32
-    Round(float prm_Value) {
-    return Floor(prm_Value + 0.5f);
-    }
+    static FORCE_INLINE float
+      Round(float prm_Value);
 
     /*!
     \fn m_Ceil
     \brief Rounds a value to the highest
     \param prm_Value Value to be ceiled
     */
-    static FORCE_INLINE int32	
-    Ceil(float prm_Value) {
-    return Trunc((float)std::ceil(prm_Value));
-    }
+    static FORCE_INLINE float
+      Ceil(float prm_Value);
 
     //! Fraccional
     /*!
-    \fn m_Fractional
+    \Fractional
     \brief Obtains the fractional of a value
     \param prm_Value Value to be fractionalized
     */
     static FORCE_INLINE float
-    Fractional(float prm_Value) {
-    return prm_Value - TruncFloat(prm_Value);
-    }
+      Fractional(float prm_Value);
     //! Module
     /*!
     \fn m_ModuleFloat
@@ -273,10 +258,9 @@ namespace oeEngineSDK {
     \param prm_X Divider
     \param prm_Y Dividend
     */
-    static FORCE_INLINE float	
-    ModuleFloat(float prm_X, float prm_Y) {
-    return (float)std::fmod(prm_X, prm_Y);
-    }
+    static FORCE_INLINE float
+      ModuleFloat(float prm_X, float prm_Y);
+    
 
     //! Power
     /*!
@@ -285,20 +269,16 @@ namespace oeEngineSDK {
     \param prm_Base Base of the power operation
     \param prm_Exponent Exponent of the power operation
     */
-    static FORCE_INLINE float	
-    Power(float prm_Base, float prm_Exponent) {
-    return (float)std::pow(prm_Base, prm_Exponent);
-    }
+    static FORCE_INLINE float
+    Power(float prm_Base, float prm_Exponent);
     //! Exponential
     /*!
     \fn m_Exponential
     \brief Obtains the exponential function of a value
     \param prm_Value Value to obtain the exponential function
     */
-    static FORCE_INLINE float	
-    Exponential(float prm_Value) {
-    return (float)std::exp(prm_Value);
-    }
+    static FORCE_INLINE float
+      Exponential(float prm_Value);
 
 
     //! Natural Logarithm

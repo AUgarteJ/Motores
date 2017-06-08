@@ -19,7 +19,9 @@
 
 TEST(Utilities, MathTest) {
 
-  EXPECT_TRUE(CMath::PI == std::atanf(1.f / 4.f));
- /* EXPECT_TRUE(CMath::Ceil(5.6f) == 6);
-  EXPECT_TRUE(CMath::MIN_UINT8 == 0);*/
+  /*EXPECT_TRUE(CMath::PI == std::atanf(1.f / 4.f));
+   EXPECT_TRUE(CMath::MIN_UINT8 == 0);
+  */
+  EXPECT_TRUE(CMath::Ceil(5.6f) == 6);
+   EXPECT_TRUE(CMath::Trunc(6.8f) ==6);
 }
