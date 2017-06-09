@@ -193,16 +193,8 @@
 //! Windows
 #if OE_ACTIVE_PLATFORM == OE_PLATFORM_WINDOWS
 # if defined(OE_UTILITIES_STATIC_LIB)
-<<<<<<< .merge_file_a12052
-#   define OE_UTILITIES_EXPORT
- # else
- #   if defined(OE_UTILITIES_EXPORTS)
-#     define OE_UTILITIES_EXPORT __declspec(dllexport)
- #   else
- #     define OE_UTILITIES_EXPORT __declspec(dllimport)
- #   endif
- # endif
-=======
+
+
 #   define OE_UTILITIES_EXPORT 
 # else
 #   if defined(OE_UTILITIES_EXPORTS)
@@ -211,7 +203,6 @@
 #     define OE_UTILITIES_EXPORT __declspec(dllimport)
 #   endif
 # endif
->>>>>>> .merge_file_a05932
 #endif
 
 #if defined(_DEBUG) || defined(DEBUG)
@@ -223,10 +214,9 @@
 #if OE_ACTIVE_COMPILER == OE_COMPILER_INTEL
 #define OE_THREAD_LOCAL __declspec(thread)
 #endif
-<<<<<<< .merge_file_a12052
 
-=======
->>>>>>> .merge_file_a05932
+
+
 
 // !Linux and Mac
 #if OE_ACTIVE_PLATFORM == OE_PLATFORM_LINUX || OE_ACTIVE_PLATFORM == OE_PLATFORM_MACOSX
