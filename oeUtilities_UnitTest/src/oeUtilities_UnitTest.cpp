@@ -91,7 +91,7 @@ TEST(Utilities, Vector4Test)
   Vector03.a_Y = -47;
   Vector03.a_Z = 38;
   Vector03.a_W = 0;
- // ASSERT_TRUE(Vector0 == Vector03);
+  ASSERT_TRUE(Vector0 == Vector03);
 }
 
 
