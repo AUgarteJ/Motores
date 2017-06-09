@@ -121,7 +121,7 @@ namespace oeEngineSDK
   float CMath::Sine(float prm_Value)
  {
    
-   return std::sin(prm_Value)*DEG_TO_RAD;
+   return std::sin(prm_Value);
  }
 
   float CMath::Cosine(float prm_Value)
@@ -133,6 +133,23 @@ namespace oeEngineSDK
  {
    return std::tan(prm_Value);
  }
+
+  float CMath::Asin(float Value)
+  {
+    return asinf((Value < -1.f) ? -1.f : ((Value < 1.f) ? Value : 1.f));
+  }
+
+  float CMath::Acos(float Value)
+  {
+    return acosf((Value < -1.f) ? -1.f : ((Value < 1.f) ? Value : 1.f));
+  }
+
+  float CMath::Atan(float Value)
+  {
+    return atanf(Value);
+  }
+
+
 
  template<class T, class U>
  inline  T CMath::Linear_Interpolation(const T & prm_A, const T & prm_B, const U & prm_Alpha)

@@ -76,26 +76,26 @@
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
     <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(SolutionDir)oeUtilities/include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib/$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
     <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(SolutionDir)oeUtilities/include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib/$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
     <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(SolutionDir)oeUtilities/include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib/$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
     <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(SolutionDir)oeUtilities/include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib/$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -354,12 +354,23 @@ namespace oeEngineSDK {
     /*!
     */
     static  float
-      Cosine(float prm_Value);
+    Cosine(float prm_Value);
 
     /*!
     */
     static  float
-      Tangent(float prm_Value);
+    Tangent(float prm_Value);
+
+
+    static float
+    Asin(float Value);
+
+    static float
+    Acos(float Value);
+
+    static float 
+    Atan(float Value);
+
 
     //! Radian trigonometric
     /*!
@@ -444,3 +455,4 @@ namespace oeEngineSDK {
       _Maximum(const T& prm_A, const T& prm_B);
   };
 }
+

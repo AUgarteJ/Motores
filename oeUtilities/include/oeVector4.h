@@ -48,24 +48,25 @@ namespace oeEngineSDK {
     return (*this / prm_Scalar); }
 
     //! Common Geometric Functions
-    float	m_Length()const{
+    float	 Length()const{
     return  CMath::Sqrt(CMath::Power(a_X, 2.0f) + CMath::Power(a_Y, 2.0f) +
       CMath::Power(a_Z, 2.0f) + CMath::Power(a_W, 2.0f)); }
     /*!*/
-    float	m_SqrLength() const {
+    float	 SqrLength() const {
     return (CMath::Power(a_X, 2.0f) + CMath::Power(a_Y, 2.0f) +
       CMath::Power(a_Z, 2.0f) + CMath::Power(a_W, 2.0f)); }
     /*!*/
-    float	m_DotProduct(const Vector4 & prm_Vector) const {
+    float	DotProduct(const Vector4 & prm_Vector) const {
     return ((a_X * prm_Vector.a_X) + (a_Y * prm_Vector.a_Y) + 
     (a_Z * prm_Vector.a_Z) + (a_W * prm_Vector.a_W)); }
     /*!*/
-    float	m_Angle(const Vector4 & prm_Vector) const{
-    return (std::acosf(m_DotProduct(prm_Vector) * (1.0f / m_Length() * 
-    prm_Vector.m_Length()))); }
+    float	Angle(const Vector4 & prm_Vector) const{
+    return (std::acosf(DotProduct(prm_Vector) * (1.0f / Length() * 
+    prm_Vector.Length()))); }
     /*!*/
-    void	m_Normalize() {
-    *this *= 1.0f / m_Length(); }
+    Vector4	Normalize() {
+    
+      return *this *= 1.0f / Length(); }
 
     //! Unique Geometric Functions
     /*!
@@ -74,13 +75,13 @@ namespace oeEngineSDK {
     \details Calculation made from determinant i(1, 0) and j(0, 1) resulting 
     in: i(y) - j(x) = (y, -x)
     */
-    Vector4 m_CrossProduct(const Vector4 & prm_Vector) const {
+    Vector4 CrossProduct(const Vector4 & prm_Vector) const {
     return Vector4(((a_Y*prm_Vector.a_Z) - (prm_Vector.a_Y*a_Z)),
       ((a_X*prm_Vector.a_Z) - (prm_Vector.a_X*a_Z)), ((a_X*prm_Vector.a_Y) -
       (prm_Vector.a_X*a_Y))); }
     /*!*/
-    Vector4	m_UnitCrossProduct(const Vector4 & prm_Vector) {
-    return (m_CrossProduct(prm_Vector) /= m_Length()); }
+    Vector4	UnitCrossProduct(const Vector4 & prm_Vector) {
+    return (CrossProduct(prm_Vector) /= Length()); }
 
     //! Common comparison operators
     bool operator == (const Vector4 & prm_Vector) const {
@@ -92,16 +93,16 @@ namespace oeEngineSDK {
     (a_Z == prm_Vector.a_Z) || (a_W != prm_Vector.a_W); }
     
     bool operator <= (const Vector4 & prm_Vector) const { 
-    return m_Length() <= prm_Vector.m_Length(); }
+    return Length() <= prm_Vector.Length(); }
     
     bool operator >= (const Vector4 & prm_Vector) const {
-    return m_Length() >= prm_Vector.m_Length(); }
+    return Length() >= prm_Vector.Length(); }
     
     bool operator < (const Vector4 & prm_Vector) const { 
-    return m_Length() < prm_Vector.m_Length(); }
+    return Length() < prm_Vector.Length(); }
 
     bool operator > (const Vector4 & prm_Vector) const {
-    return m_Length() <= prm_Vector.m_Length(); }
+    return Length() <= prm_Vector.Length(); }
 
   };
 }
