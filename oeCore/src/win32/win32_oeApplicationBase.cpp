@@ -1,7 +1,7 @@
 #include "oeApplicationBase.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+
+#include <win32/oeMinWindows.h>
 #include <iostream>
 #include <memory>
 
@@ -75,7 +75,7 @@ namespace oeEngineSDK
     ShowWindow(hWnd, SW_SHOW);
     UpdateWindow(hWnd);
 
-    m_screenHandle = reinterpret_cast<int>(hWnd);
+    m_screenHandle = reinterpret_cast<void*>(hWnd);
    
     MSG msg;
     memset(&msg, 0, sizeof(msg));

@@ -14,7 +14,7 @@ namespace oeEngineSDK
   public:
     int run();
 
-    int getScreenHandle() { return m_screenHandle; }
+   void* getScreenHandle() { return m_screenHandle; }
   
   
      /* Variables*/
@@ -26,7 +26,7 @@ namespace oeEngineSDK
     String m_szTitle; // The title bar text
 
   protected:
-    int m_screenHandle;
+    void* m_screenHandle;
 
 
   };

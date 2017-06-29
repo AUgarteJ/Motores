@@ -48,6 +48,9 @@
     <ClInclude Include="include\oeMatrix4D.h">
       <Filter>Header Files\Math\Matrix4</Filter>
     </ClInclude>
+    <ClInclude Include="include\win32\oeMinWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\oePlatformTypes.cpp">
