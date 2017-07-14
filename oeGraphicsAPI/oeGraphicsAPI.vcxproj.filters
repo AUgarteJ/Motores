@@ -24,6 +24,12 @@
     <ClCompile Include="src\oeDeviceContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\oeBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\oeRenderTargetView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\oePlatformDefines_GraphicsAPI.h">
@@ -42,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\oeBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\oeRenderTargetView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

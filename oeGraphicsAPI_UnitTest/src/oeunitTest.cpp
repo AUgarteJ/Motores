@@ -7,10 +7,15 @@
 //--------------------------------------------------------------------------------------
 #include <windows.h>
 #include <d3d11.h>
-#include <d3dx11.h>
+//#include <d3dx11.h>
 #include <oeApplicationBase.h>
+#include <oeVector4.h>
 #include <oeDevice.h>
 #include <oeDeviceContext.h>
+
+//#include <D3Dcompiler.h>
+//#include <d3dcompile.h>
+#include <d3dcompiler.h>
 
 using namespace  oeEngineSDK;
 CApplicationBase App;
@@ -236,8 +241,126 @@ HRESULT InitDevice()
 //--------------------------------------------------------------------------------------
 // Render the frame
 //--------------------------------------------------------------------------------------
+
+void SetInfoToRender()
+{
+  ID3DBlob* MyShaderCompileInfoCode;
+
+  ID3D11InputLayout* ILayOut;
+
+  ID3D11Device** p_Device = reinterpret_cast<ID3D11Device**>
+    (m_Device.GetReference());
+  ID3D11DeviceContext** p_DeviceContext = reinterpret_cast<ID3D11DeviceContext**>
+    (m_DeviceContext.GetReference());
+
+  D3D11_INPUT_ELEMENT_DESC layout[] =
+  {
+    { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+  };
+
+
+  //To Do: compilar shader
+  ID3DBlob* pErrorBlob;
+  ID3DBlob* VertexShader;
+  ID3D11VertexShader* VerShader;
+
+  
+    //if(FAILED(D3DCompileFromFile("Resourse/Shaders/ShaderTest.hlsl", NULL, D3D_COMPILE_STANDARD_FILE_INCLUDE, "VS_Main", "vs_5_0",
+    //  D3DCOMPILE_DEBUG | D3DCOMPILE_ENABLE_STRICTNESS, 0, MyShaderCompileInfoCode, &pErrorBlob)))
+    //{
+    //  //Generar una cadena que muestre los errores obtenidos al compilar el shader
+    //  OutputDebugString((char*)pErrorBlob->GetBufferPointer());
+    //  std::string s = (char*)pErrorBlob->GetBufferPointer();
+    //}
+
+    (*p_Device)->CreateVertexShader(VertexShader->GetBufferPointer(), VertexShader->GetBufferSize(), NULL, &VerShader);
+
+    (*p_DeviceContext)->VSSetShader(VerShader, NULL, 0);
+
+
+  (*p_Device)->CreateInputLayout(layout, 0, MyShaderCompileInfoCode->GetBufferPointer(), MyShaderCompileInfoCode->GetBufferSize(), &ILayOut);
+
+
+  ID3D11Buffer* pVertexB;
+  ID3D11Buffer* pIndexB;
+
+  //Create VertexBuffer
+
+  struct Vertex
+  {
+    Vector4 m_Pos;
+
+  };
+
+  Vertex VerToRender[3]
+  {
+    Vector4(0.0f, 0.5f, 0.5f, 0.f),
+    Vector4(0.5f, -0.5f,   0.5f, 0.f),
+    Vector4(-0.5f, -0.5f,  0.5f, 0.f)
+  };
+
+
+  D3D11_BUFFER_DESC DesVerBuffer;
+  DesVerBuffer.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+  DesVerBuffer.ByteWidth = sizeof(Vertex) * 3; //Tamaño quw tendrá el buffer  
+  DesVerBuffer.CPUAccessFlags = 0;
+  DesVerBuffer.MiscFlags = 0;
+  DesVerBuffer.Usage = D3D11_USAGE_DEFAULT;
+
+  D3D11_SUBRESOURCE_DATA InitData;
+  ZeroMemory(&InitData, sizeof(InitData));
+  InitData.pSysMem = VerToRender;
+
+  (*p_Device)->CreateBuffer(&DesVerBuffer, &InitData, &pVertexB);
+
+
+  //Reate Iex Buffer
+  struct INDEX
+  {
+    float m_Pos;
+
+  };
+
+  INDEX IndexToRender[3]
+  {
+    float(1.0f),
+    float(2.0f),
+    float(3.0f)
+  };
+
+  /*
+  D3D11_BUFFER_DESC DesIndBuffer;
+  DesIndBuffer.BindFlags = D3D11_BIND_INDEX_BUFFER;
+  DesIndBuffer.ByteWidth = sizeof(INDEX) * 3; //Tamaño quw tendrá el buffer
+  DesIndBuffer.CPUAccessFlags = 0;
+  DesIndBuffer.MiscFlags = 0;
+  DesIndBuffer.Usage = D3D11_USAGE_DEFAULT;
+
+  D3D11_SUBRESOURCE_DATA InitData;
+  ZeroMemory(&InitData, sizeof(InitData));
+  InitData.pSysMem = IndexToRender;
+
+  (*pDevice)->CreateBuffer(&DesIndBuffer, &InitData, &pIndexB);
+
+  */
+
+  UINT  stride = sizeof(Vertex);
+
+  (*p_DeviceContext)->IASetVertexBuffers(0, 1, &pVertexB, &stride, 0);
+
+  
+     
+  (*p_DeviceContext)->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+  (*p_DeviceContext)->IASetInputLayout(ILayOut);
+
+}
+
+
 void Render()
 {
+  
+
   ID3D11Device** p_Device = reinterpret_cast<ID3D11Device**>(m_Device.GetReference());
   ID3D11DeviceContext** p_DeviceContext = reinterpret_cast<ID3D11DeviceContext**>
     (m_DeviceContext.GetReference());

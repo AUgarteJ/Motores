@@ -164,12 +164,15 @@
     <ClInclude Include="include\oeDeviceContext.h" />
     <ClInclude Include="include\oePlatformDefines_GraphicsAPI.h" />
     <ClInclude Include="include\oePrerequisites_Graphics.h" />
+    <ClInclude Include="include\oeRenderTargetView.h" />
     <ClInclude Include="include\oeTexture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\oeBuffer.cpp" />
     <ClCompile Include="src\oeDevice.cpp" />
     <ClCompile Include="src\oeDeviceContext.cpp" />
     <ClCompile Include="src\cppTest.cpp" />
+    <ClCompile Include="src\oeRenderTargetView.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
