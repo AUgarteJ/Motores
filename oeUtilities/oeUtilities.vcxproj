@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\oeMatrix4D.h" />
+    <ClInclude Include="include\oeModule.h" />
     <ClInclude Include="include\oePlatformMath.h" />
     <ClInclude Include="include\oePlatformTypes.h" />
     <ClInclude Include="include\oePlatfomDefines_Utilities.h" />

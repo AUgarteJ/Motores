@@ -106,6 +106,7 @@
     <Link>
       <ImportLibrary>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).pgd</ProfileGuidedDatabase>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,6 +121,7 @@
     <Link>
       <ImportLibrary>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).pgd</ProfileGuidedDatabase>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,6 +140,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).pgd</ProfileGuidedDatabase>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,23 +159,33 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).lib</ImportLibrary>
       <ProfileGuidedDatabase>$(SolutionDir)lib/$(PlatformTarget)/$(TargetName).pgd</ProfileGuidedDatabase>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\oeBuffer.h" />
     <ClInclude Include="include\oeDevice.h" />
     <ClInclude Include="include\oeDeviceContext.h" />
+    <ClInclude Include="include\oeGraphicsAPI.h" />
+    <ClInclude Include="include\oePixelShader.h" />
     <ClInclude Include="include\oePlatformDefines_GraphicsAPI.h" />
     <ClInclude Include="include\oePrerequisites_Graphics.h" />
     <ClInclude Include="include\oeRenderTargetView.h" />
+    <ClInclude Include="include\oeShader.h" />
+    <ClInclude Include="include\oeSwapChain.h" />
     <ClInclude Include="include\oeTexture.h" />
+    <ClInclude Include="include\oeVertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\oeBuffer.cpp" />
     <ClCompile Include="src\oeDevice.cpp" />
     <ClCompile Include="src\oeDeviceContext.cpp" />
-    <ClCompile Include="src\cppTest.cpp" />
+    <ClCompile Include="src\oeGraphicsAPI.cpp" />
+    <ClCompile Include="src\oePixelShader.cpp" />
     <ClCompile Include="src\oeRenderTargetView.cpp" />
+    <ClCompile Include="src\oeShader.cpp" />
+    <ClCompile Include="src\oeSwapChain.cpp" />
+    <ClCompile Include="src\oeVertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

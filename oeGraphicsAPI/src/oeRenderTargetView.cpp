@@ -13,6 +13,10 @@ namespace oeEngineSDK
     Destroy();
   }
 
+  void CRenderTargetView::Create()
+  {
+    //TODO
+  }
   void CRenderTargetView::Destroy()
   {
     if (p_RenderTargetView)

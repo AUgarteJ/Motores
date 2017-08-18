@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <oePlatformMath.h>
-#include<oeVector4.h>
+#include <oeVector4.h>
 
  using namespace oeEngineSDK;
  TEST(Utilities, TypesTest) {

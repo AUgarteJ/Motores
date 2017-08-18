@@ -51,6 +51,9 @@
     <ClInclude Include="include\win32\oeMinWindows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\oeModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\oePlatformTypes.cpp">

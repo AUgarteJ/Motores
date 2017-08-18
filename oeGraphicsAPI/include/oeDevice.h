@@ -10,9 +10,10 @@ namespace oeEngineSDK
 {
   class OE_GRAPHICS_API_EXPORT CDevice
   {
-  private:
-    ID3D11Device* p_Device;
+  
+   
   public:
+    ID3D11Device* m_Device;
     CDevice();
     ~CDevice();
     void Create();

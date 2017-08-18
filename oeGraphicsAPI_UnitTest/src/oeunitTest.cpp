@@ -7,15 +7,10 @@
 //--------------------------------------------------------------------------------------
 #include <windows.h>
 #include <d3d11.h>
-//#include <d3dx11.h>
 #include <oeApplicationBase.h>
 #include <oeVector4.h>
 #include <oeDevice.h>
 #include <oeDeviceContext.h>
-
-//#include <D3Dcompiler.h>
-//#include <d3dcompile.h>
-#include <d3dcompiler.h>
 
 using namespace  oeEngineSDK;
 CApplicationBase App;
@@ -164,7 +159,7 @@ HRESULT InitDevice()
 
   UINT createDeviceFlags = 0;
 #ifdef _DEBUG
-  createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+  //createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
   D3D_DRIVER_TYPE driverTypes[] =
@@ -259,10 +254,10 @@ void SetInfoToRender()
   };
 
 
-  //To Do: compilar shader
-  ID3DBlob* pErrorBlob;
-  ID3DBlob* VertexShader;
-  ID3D11VertexShader* VerShader;
+  ////To Do: compilar shader
+  //ID3DBlob* pErrorBlob;
+  //ID3DBlob* VertexShader;
+  //ID3D11VertexShader* VerShader;
 
   
     //if(FAILED(D3DCompileFromFile("Resourse/Shaders/ShaderTest.hlsl", NULL, D3D_COMPILE_STANDARD_FILE_INCLUDE, "VS_Main", "vs_5_0",
@@ -273,13 +268,13 @@ void SetInfoToRender()
     //  std::string s = (char*)pErrorBlob->GetBufferPointer();
     //}
 
-    (*p_Device)->CreateVertexShader(VertexShader->GetBufferPointer(), VertexShader->GetBufferSize(), NULL, &VerShader);
+  /*  (*p_Device)->CreateVertexShader(VertexShader->GetBufferPointer(), VertexShader->GetBufferSize(), NULL, &VerShader);
 
     (*p_DeviceContext)->VSSetShader(VerShader, NULL, 0);
 
 
   (*p_Device)->CreateInputLayout(layout, 0, MyShaderCompileInfoCode->GetBufferPointer(), MyShaderCompileInfoCode->GetBufferSize(), &ILayOut);
-
+*/
 
   ID3D11Buffer* pVertexB;
   ID3D11Buffer* pIndexB;
@@ -302,7 +297,7 @@ void SetInfoToRender()
 
   D3D11_BUFFER_DESC DesVerBuffer;
   DesVerBuffer.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-  DesVerBuffer.ByteWidth = sizeof(Vertex) * 3; //Tamaño quw tendrá el buffer  
+  DesVerBuffer.ByteWidth = sizeof(Vertex) * 3; //Tamaño que tendrá el buffer  
   DesVerBuffer.CPUAccessFlags = 0;
   DesVerBuffer.MiscFlags = 0;
   DesVerBuffer.Usage = D3D11_USAGE_DEFAULT;
@@ -352,8 +347,8 @@ void SetInfoToRender()
      
   (*p_DeviceContext)->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-  (*p_DeviceContext)->IASetInputLayout(ILayOut);
-
+ /* (*p_DeviceContext)->IASetInputLayout(ILayOut);
+*/
 }
 
 
@@ -367,6 +362,7 @@ void Render()
   // Just clear the backbuffer
   float ClearColor[4] = { 1.0f, 1.0f, 0.f, 0.0f }; //red,green,blue,alpha
   (*p_DeviceContext)->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
+  (*p_DeviceContext)->Draw(3, 0);
   g_pSwapChain->Present(0, 0);
 
 }

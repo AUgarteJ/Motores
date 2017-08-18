@@ -1,10 +1,10 @@
-#include "oeDevice.h"
+ #include "oeDevice.h"
 
 namespace oeEngineSDK
 {
   CDevice::CDevice()
   {
-    p_Device = nullptr;
+    m_Device = nullptr;
 
   }
 
@@ -15,20 +15,20 @@ namespace oeEngineSDK
 
   void CDevice::Destroy()
   {
-    if (p_Device)
+    if (m_Device)
     {
-      p_Device->Release();
-      p_Device = nullptr;
+      m_Device->Release();
+      m_Device = nullptr;
     }
   }
 
   void* CDevice::GetObject()
   {
-    return reinterpret_cast<void*>(p_Device);
+    return reinterpret_cast<void*>(m_Device);
   }
 
   void** CDevice::GetReference()
   {
-    return reinterpret_cast<void**>(&p_Device);
+    return reinterpret_cast<void**>(&m_Device);
   }
 }
