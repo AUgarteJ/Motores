@@ -9,7 +9,7 @@ namespace oeEngineSDK
 
   CSwapChain::~CSwapChain()
   {
-    Destroy();
+    destroy();
   }
   void CSwapChain::create()
   {
@@ -28,7 +28,7 @@ namespace oeEngineSDK
     return reinterpret_cast<void**>(&pSwapChain);
   }
 
-  void CSwapChain::Destroy()
+  void CSwapChain::destroy()
   {
     if (pSwapChain)
     {

@@ -10,14 +10,14 @@ namespace oeEngineSDK
 
   CRenderTargetView::~CRenderTargetView()
   {
-    Destroy();
+    destroy();
   }
 
-  void CRenderTargetView::Create()
+  void CRenderTargetView::create()
   {
     //TODO
   }
-  void CRenderTargetView::Destroy()
+  void CRenderTargetView::destroy()
   {
     if (p_RenderTargetView)
     {
@@ -26,12 +26,12 @@ namespace oeEngineSDK
     }
   }
 
-  void* CRenderTargetView::GetObject()
+  void* CRenderTargetView::getObject()
   {
     return reinterpret_cast<void*>(p_RenderTargetView);
   }
 
-  void** CRenderTargetView::GetReference()
+  void** CRenderTargetView::getReference()
   {
     return reinterpret_cast<void**>(&p_RenderTargetView);
   }

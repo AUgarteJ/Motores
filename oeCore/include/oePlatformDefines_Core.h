@@ -1,6 +1,7 @@
 #pragma once
 
-#include <oePlatformTypes.h>
+#include <oePrerequisites_Utilities.h>
+#include <oePrerequisites_Graphics.h>
 
 #if OE_ACTIVE_PLATFORM == OE_PLATFORM_WINDOWS
 #if defined (OE_CORE_STATIC_LIBRARY)

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <memory>
 
+#include "oeGraphicsAPI.h"
+
 namespace oeEngineSDK
 
 {
@@ -39,6 +41,8 @@ namespace oeEngineSDK
   int 
     CApplicationBase::run()
   {
+    g_GraphicsAPI().startUp();
+
     //Register a window class
     HINSTANCE hInstance = GetModuleHandle(0);
     WNDCLASSEXA wcex;
@@ -81,19 +85,25 @@ namespace oeEngineSDK
     memset(&msg, 0, sizeof(msg));
     msg.message = WM_NULL;
 
+    //TODO: Inicializar todos los sistemas del juego
+    g_GraphicsAPI().instance().Initialize(reinterpret_cast<void*>(hWnd));
 
-    if (PeekMessageA(&msg, nullptr, 0U, 0U, PM_REMOVE)) {
+    //Una vez inicializados los sistemas, inicializamos lo especifico a ESTE juego
+    OnInitialize();
 
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-    }
     while (msg.message != WM_QUIT) {
       //Process messaged
       if (PeekMessageA(&msg, nullptr, 0U, 0U, PM_REMOVE)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
       }
+
+      OnUpdate();
+      OnRender();
     }
+
+    OnDestroy();
+
     return static_cast <int>(msg.wParam);
 
   }

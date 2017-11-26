@@ -10,10 +10,10 @@ namespace oeEngineSDK
 
   CDeviceContext::~CDeviceContext()
   {
-    Destroy();
+    destroy();
   }
 
-  void CDeviceContext::Destroy()
+  void CDeviceContext::destroy()
   {
     if (p_DeviceContext)
     {
@@ -22,12 +22,12 @@ namespace oeEngineSDK
     }
   }
 
-  void* CDeviceContext::GetObject()
+  void* CDeviceContext::getObject()
   {
     return reinterpret_cast<void*>(p_DeviceContext);
   }
 
-  void** CDeviceContext::GetReference()
+  void** CDeviceContext::getReference()
   {
     return reinterpret_cast<void**>(&p_DeviceContext);
   }

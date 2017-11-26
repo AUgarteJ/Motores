@@ -18,7 +18,7 @@ namespace oeEngineSDK
     static const String SM_VS;
     static const String SM_PS;*/
 
-  protected:
+  public:
     ID3DBlob* m_pBlob;
   };
 }

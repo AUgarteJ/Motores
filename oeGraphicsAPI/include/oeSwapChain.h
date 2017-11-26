@@ -15,12 +15,10 @@ namespace oeEngineSDK
 #endif
 
   public:
-
-
     CSwapChain();
     ~CSwapChain();
     void create();
-    void Destroy();
+    void destroy();
     void* getObject();
     void** getReference();
   };

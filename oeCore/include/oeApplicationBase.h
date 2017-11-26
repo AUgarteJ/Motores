@@ -13,8 +13,13 @@ namespace oeEngineSDK
     //functions
   public:
     int run();
-
-   void* getScreenHandle() { return m_screenHandle; }
+    
+    virtual void OnInitialize() = 0;
+    virtual void OnUpdate() = 0;
+    virtual void OnRender() = 0;
+    virtual void OnDestroy() = 0;
+   
+    void* getScreenHandle() { return m_screenHandle; }
   
   
      /* Variables*/

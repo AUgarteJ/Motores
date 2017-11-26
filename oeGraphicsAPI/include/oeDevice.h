@@ -16,10 +16,10 @@ namespace oeEngineSDK
     ID3D11Device* m_Device;
     CDevice();
     ~CDevice();
-    void Create();
-    void Destroy();
-    void* GetObject();
-    void** GetReference();
+    void create();
+    void destroy();
+    void* getObject();
+    void** getReference();
 
   };
 

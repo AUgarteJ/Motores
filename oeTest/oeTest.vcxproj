@@ -74,26 +74,26 @@
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
-    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(IncludePath)</IncludePath>
+    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(DEVLIBS)assimp-master/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
-    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(IncludePath)</IncludePath>
+    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(DEVLIBS)assimp-master/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
-    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(IncludePath)</IncludePath>
+    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(DEVLIBS)assimp-master/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)/bin/$(PlatformTarget)/</OutDir>
     <IntDir>$(SolutionDir)/intermediate/$(ProjectName)/$(Configuration)/$(PlatformTarget)/</IntDir>
-    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(IncludePath)</IncludePath>
+    <IncludePath>./include/;$(DEVLIBS)googletest/Include/;$(DEVLIBS)assimp-master/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,8 +110,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>oeCored.lib;gtestd.lib;gtest_maind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;$(DEVLIBS)assimp-master/lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>oeCored.lib;gtestd.lib;gtest_maind.lib;assimpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,8 +129,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>oeCored.lib;gtestd.lib;gtest_maind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;$(DEVLIBS)assimp-master/lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>oeCored.lib;gtestd.lib;gtest_maind.lib;assimpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -152,7 +152,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;$(DEVLIBS)assimp-master/lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>oeCore.lib;gtest.lib;gtest_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -175,7 +175,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DEVLIBS)googletest/Lib/$(PlatformTarget)/;$(SolutionDir)lib/$(PlatformTarget)/;$(DEVLIBS)assimp-master/lib/$(PlatformTarget)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>oeCore.lib;gtest.lib;gtest_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

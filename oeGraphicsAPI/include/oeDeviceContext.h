@@ -15,10 +15,10 @@ namespace oeEngineSDK
   public:
     CDeviceContext();
     ~CDeviceContext();
-    void Create();
-    void Destroy();
-    void* GetObject();
-    void** GetReference();
+    void create();
+    void destroy();
+    void* getObject();
+    void** getReference();
 
   };
 
