@@ -21,13 +21,6 @@ namespace oeEngineSDK
     void CreateVertexBuffer();
     void CreateIndexBuffer ();
   
-
-
+    void render(const CDeviceContext& DeviceContext);
   };
-
-
-
-
-
-
 }

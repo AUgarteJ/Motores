@@ -17,7 +17,7 @@ namespace oeEngineSDK
     ~CRenderTargetView();
     void create();
     void destroy();
-    void* getObject();
+    void* getObject() const;
     void** getReference();
 
   };

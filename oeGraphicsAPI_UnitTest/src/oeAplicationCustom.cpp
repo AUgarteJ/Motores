@@ -1,5 +1,5 @@
 #include "oeAplicationCustom.h"
-#include <oeModel.h>
+
 
 namespace oeEngineSDK {
 
@@ -16,8 +16,15 @@ namespace oeEngineSDK {
 
   void OECustomAplication::OnInitialize()
   {
-    CModel myModel;
-    myModel.loadModel("Resources/Models/Cube.3ds");
+    oeGraphicsAPI* pGraphics = g_GraphicsAPI().instancePtr();
+
+    m_vertexShader.Create(&pGraphics->m_Device, "Resources/Shaders/ShaderTest.hlsl", "VS_Main");
+    m_pixelShader.Create(&pGraphics->m_Device, "Resources/Shaders/ShaderTest.hlsl", "PS_Main");
+
+    m_inputLayout.addInputElement("POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0);
+    m_inputLayout.CreatHardwareLayout(&pGraphics->m_Device, &m_vertexShader);
+
+    m_myModel.loadModel("Resources/Models/Cube.3ds");
   }
 
   void OECustomAplication::OnUpdate()
@@ -29,13 +36,21 @@ namespace oeEngineSDK {
     oeGraphicsAPI* pGraphics = g_GraphicsAPI().instancePtr();
 
     IDXGISwapChain* pSwapChain = reinterpret_cast<IDXGISwapChain*>(pGraphics->m_SwapChain.getObject());
-    ID3D11DeviceContext* pContext = reinterpret_cast<ID3D11DeviceContext*>(pGraphics->m_DeviceContext.getObject());
-    ID3D11RenderTargetView* pRTV = reinterpret_cast<ID3D11RenderTargetView*>(pGraphics->m_pRenderTargetView.getObject());
 
-    float MyColor[4] = { 0,1,0,1 };
-    pContext->ClearRenderTargetView(pRTV, MyColor);
-    pSwapChain->Present(0, 0);
+    //Limpiar back buffer
+    float MyColor[4] = { 0, 1, 0, 1 };
+    pGraphics->m_DeviceContext.clearRenderTarget(pGraphics->m_pRenderTargetView, MyColor);
+    m_inputLayout.SetHardwareLayout(&pGraphics->m_DeviceContext);
+    pGraphics->m_DeviceContext.setTopology();
     
+    m_inputLayout.SetHardwareLayout(&pGraphics->m_DeviceContext);
+    m_vertexShader.SetShader(&pGraphics->m_DeviceContext);
+    m_pixelShader.SetShader(&pGraphics->m_DeviceContext);
+
+    m_myModel.render(pGraphics->m_DeviceContext);
+
+    //Sacar imagen a pantalla
+    pSwapChain->Present(0, 0);
   }
 
   void OECustomAplication::OnDestroy()

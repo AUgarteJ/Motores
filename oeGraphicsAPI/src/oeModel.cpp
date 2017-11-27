@@ -47,9 +47,10 @@ namespace oeEngineSDK
         {
           if (pMesh->HasPositions())
           {
-            pTempVector.a_X = pMesh->mVertices[j].x;
-            pTempVector.a_Y = pMesh->mVertices[j].y;
-            pTempVector.a_Z = pMesh->mVertices[j].z;
+            pTempVector.x = pMesh->mVertices[j].x;
+            pTempVector.y = pMesh->mVertices[j].y;
+            pTempVector.z = pMesh->mVertices[j].z;
+            pTempVector.w = 1.0f;
 
             m_MeshList[i]->m_vetexBuffer.Add(pTempVector);
           }
@@ -73,17 +74,12 @@ namespace oeEngineSDK
     }
   }
 
-
-  void CModel::CreateVertexBuffer()
+  void CModel::render(const CDeviceContext& DeviceContext)
   {
-    for (int i = 0; i <m_MeshList.size();++i )
-    {
-     
+    //Dibuja modelo en pantalla
+    for (auto mesh : m_MeshList) {
+      mesh->render(DeviceContext);
     }
   }
-  void CModel::CreateIndexBuffer()
-  {
-
-  }
 }
-
+  

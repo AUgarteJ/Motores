@@ -13,7 +13,7 @@ namespace oeEngineSDK
   public:
     CVertexShader() : CShaderBase(), m_pIVertexShader(nullptr) {};
     ~CVertexShader() {};
-
+    void SetShader(CDeviceContext* DeviceContext);
     void Create(CDevice* pDevice, String fileName, String entryPoint);
 
     ID3D11VertexShader* m_pIVertexShader;

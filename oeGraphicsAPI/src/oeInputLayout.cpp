@@ -1,4 +1,3 @@
-#define   _CRT_SECURE_NO_WARNINGS =0;
 #include "oeInputLayout.h"
 
 
@@ -9,7 +8,12 @@ oeEngineSDK::oeInputLayout::oeInputLayout()
 
 oeEngineSDK::oeInputLayout::~oeInputLayout()
 {
+  //Hay que desalojar la memoria de los strings de la lista
+  for (auto& element : m_Layout) {
+    delete element.SemanticName;
+  }
   m_Layout.clear();
+
   if (nullptr != m_d3dInputLayout)
   {
     m_d3dInputLayout->Release();
@@ -31,8 +35,9 @@ void oeEngineSDK::oeInputLayout::addInputElement(
 
   char* nSmName = new char[semanticName.size() + 1];
   strcpy(nSmName, semanticName.c_str());
+  nSmName[semanticName.size()] = 0;
 
-  desc.SemanticName = semanticName.c_str();
+  desc.SemanticName = nSmName;
   desc.SemanticIndex = sematicIndex;
   desc.Format = format;
   desc.InputSlot = inputSlot;
@@ -41,10 +46,6 @@ void oeEngineSDK::oeInputLayout::addInputElement(
   desc.InstanceDataStepRate = istanceDataStepRate;
 
   m_Layout.push_back(desc);
-
-
-
-
 }
 
 bool oeEngineSDK::oeInputLayout::CreatHardwareLayout(CDevice* pDevice, CVertexShader* pVSBlob)
@@ -79,6 +80,3 @@ void oeEngineSDK::oeInputLayout::SetHardwareLayout(CDeviceContext * pDeviceConte
                                                   (pDeviceContext->getObject());
   pd3deviceContext->IASetInputLayout(m_d3dInputLayout);
 }
-
-
-

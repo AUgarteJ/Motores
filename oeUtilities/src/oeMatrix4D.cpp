@@ -33,25 +33,25 @@ Matrix4::Matrix4(float a, float b, float c, float d, float e, float f, float g, 
 
 Matrix4::Matrix4(Vector4* a, Vector4* b, Vector4* c, Vector4* d)
   {
-    fMatrix[0][0] = a->X_Axis;
-    fMatrix[0][1] = a->Y_Axis;
-    fMatrix[0][2] = a->Z_Axis;
-    fMatrix[0][3] = a->W_Axis;
+    fMatrix[0][0] = a->x;
+    fMatrix[0][1] = a->y;
+    fMatrix[0][2] = a->z;
+    fMatrix[0][3] = a->w;
 
-    fMatrix[1][0] = b->X_Axis;
-    fMatrix[1][1] = b->Y_Axis;
-    fMatrix[1][2] = b->Z_Axis;
-    fMatrix[1][3] = b->W_Axis;
+    fMatrix[1][0] = b->x;
+    fMatrix[1][1] = b->y;
+    fMatrix[1][2] = b->z;
+    fMatrix[1][3] = b->w;
 
-    fMatrix[2][0] = c->X_Axis;
-    fMatrix[2][1] = c->Y_Axis;
-    fMatrix[2][2] = c->Z_Axis;
-    fMatrix[2][3] = c->W_Axis;
+    fMatrix[2][0] = c->x;
+    fMatrix[2][1] = c->y;
+    fMatrix[2][2] = c->z;
+    fMatrix[2][3] = c->w;
 
-    fMatrix[3][0] = d->X_Axis;
-    fMatrix[3][1] = d->Y_Axis;
-    fMatrix[3][2] = d->Z_Axis;
-    fMatrix[3][3] = d->W_Axis;
+    fMatrix[3][0] = d->x;
+    fMatrix[3][1] = d->y;
+    fMatrix[3][2] = d->z;
+    fMatrix[3][3] = d->w;
   }
 
 

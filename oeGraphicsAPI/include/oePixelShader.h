@@ -17,7 +17,7 @@ namespace oeEngineSDK
     ~CPixelShader() {};
 
     void Create(CDevice* pDevice, String fileName, String entryPoint);
-
+    void SetShader(CDeviceContext* DeviceContext);
     ID3D11PixelShader* m_pIPixelShader;
   };
   }

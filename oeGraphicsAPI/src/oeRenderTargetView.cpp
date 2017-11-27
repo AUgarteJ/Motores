@@ -26,7 +26,7 @@ namespace oeEngineSDK
     }
   }
 
-  void* CRenderTargetView::getObject()
+  void* CRenderTargetView::getObject() const
   {
     return reinterpret_cast<void*>(p_RenderTargetView);
   }

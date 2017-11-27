@@ -1,6 +1,7 @@
 #pragma once
 #include "oePrerequisites_Graphics.h"
 #include "oeBuffer.h"
+#include "oeDeviceContext.h"
 #include <oeVector4.h>
 
 namespace oeEngineSDK
@@ -13,5 +14,7 @@ namespace oeEngineSDK
     CVertexBuffer<Vector4> m_vetexBuffer;
     CMesh();
     ~CMesh();
+
+    void render(const CDeviceContext& DeviceContext);
   };
 }

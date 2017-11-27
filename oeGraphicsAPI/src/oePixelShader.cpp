@@ -16,4 +16,10 @@ namespace oeEngineSDK
       NULL,
       &m_pIPixelShader);
   }
+
+  void CPixelShader::SetShader(CDeviceContext* DeviceContext)
+  {
+    ID3D11DeviceContext* PDeviceContext = reinterpret_cast<ID3D11DeviceContext*>(DeviceContext->getObject());
+    PDeviceContext->PSSetShader(m_pIPixelShader, NULL, 0);
+  }
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "oePrerequisites_Graphics.h"
+#include "oeRenderTargetView.h"
 
 
 #if OE_ACTIVE_PLATFORM == OE_PLATFORM_WINDOWS
@@ -15,11 +16,14 @@ namespace oeEngineSDK
   public:
     CDeviceContext();
     ~CDeviceContext();
+    
     void create();
     void destroy();
-    void* getObject();
+    void* getObject() const;
     void** getReference();
 
+    void clearRenderTarget(const CRenderTargetView& rtv, float color[4]);
+    void setTopology();
   };
 
 

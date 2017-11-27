@@ -11,6 +11,7 @@ namespace oeEngineSDK
 {
   class OE_GRAPHICS_API_EXPORT oeInputLayout
   {
+  public:
     oeInputLayout();
     ~oeInputLayout();
 

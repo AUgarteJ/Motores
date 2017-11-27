@@ -25,9 +25,13 @@ namespace oeEngineSDK
 
     }
   public:
-    void* GetReference()
+    void** GetReference()
     {
       return reinterpret_cast<void**>(&m_Buffer);
+    }
+    void* GetObject()
+    {
+      return reinterpret_cast<void*>(m_Buffer);
     }
   private:
     ID3D11Buffer* m_Buffer;
@@ -69,7 +73,11 @@ namespace oeEngineSDK
     void Remove(unsigned int nIndex, unsigned int count = 1);
     void Clear();
     void CreateHardwareBuffer(int usageFlag = BUFFER_USAGE_FLAGS::KDEFAULT);
+    void SetHardwareBuffer(uint32 Slot = 0, uint32 offset = 0);
 
+    SIZE_T getIndexCount() {
+      return m_indexArray.size();
+    }
   private:
     std::vector<T> m_indexArray;
 
@@ -191,10 +199,24 @@ namespace oeEngineSDK
 
     // Set vertex buffer
     uint32 stride = sizeof(T);
-    pDeviceContext->IASetVertexBuffers(Slot, 1, m_Buffer, &stride, &offset);
+    ID3D11Buffer* pBuffer = reinterpret_cast<ID3D11Buffer*>(m_BufferData->GetObject());
+    pDeviceContext->IASetVertexBuffers(Slot, 1, &pBuffer, &stride, &offset);
   }
 //////////////////////////////////////////////////////////////////////////
                            ////   index    ////
+
+  template <class T>
+  void oeIndexBuffer<T>::SetHardwareBuffer(uint32 Slot = 0, uint32 offset = 0)
+  {
+    oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+    ID3D11DeviceContext* pDeviceContext = reinterpret_cast<ID3D11DeviceContext*>
+      (pGraphicsAPI->m_DeviceContext.getObject());
+
+    // Set vertex buffer
+    uint32 stride = sizeof(T);
+    ID3D11Buffer* pBuffer = reinterpret_cast<ID3D11Buffer*>(m_BufferData->GetObject());
+    pDeviceContext->IASetIndexBuffer(pBuffer, DXGI_FORMAT_R32_UINT, 0);
+  }
 
   template <class T>
   oeIndexBuffer<T>::oeIndexBuffer()
@@ -260,7 +282,7 @@ namespace oeEngineSDK
     srData.SysMemSlicePitch = 0;
 
     indexBufferDesc.ByteWidth = sizeof(T) * m_indexArray.size();
-    indexBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
     indexBufferDesc.CPUAccessFlags = 0;
     indexBufferDesc.MiscFlags = 0;
     indexBufferDesc.StructureByteStride = 0;
