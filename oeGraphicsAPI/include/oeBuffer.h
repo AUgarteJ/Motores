@@ -93,7 +93,7 @@ namespace oeEngineSDK
     ~CVertexBuffer();
 
     void Add(T nIndex);
-    void Add(const std::vector<T>& m_indexArray);
+    void Add(const std::vector<T>& vertexArray);
     void Add(T* pArray, unsigned int nNumObjects);
 
     void Remove(unsigned int nIndex, unsigned int count = 1);
@@ -101,6 +101,10 @@ namespace oeEngineSDK
 
     void CreateHardwareBuffer(int usageFlag = BUFFER_USAGE_FLAGS::KDEFAULT);
     void SetHardwareBuffer(uint32 Slot = 0, uint32 offset = 0);
+
+    SIZE_T getVertexCount() {
+      return m_vertexArray.size();
+    }
 
   private:
     std::vector<T> m_vertexArray;
@@ -126,7 +130,7 @@ namespace oeEngineSDK
   template<typename T>
   void CVertexBuffer<T>::Add(const std::vector<T>& nVertexArray)
   {
-    Add(&nVertexArray[0], nVertexArray.size());
+    Add( &(const_cast<std::vector<T>&>(nVertexArray)[0]) , nVertexArray.size());
   }
 
   template<typename T>

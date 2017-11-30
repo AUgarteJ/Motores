@@ -6,6 +6,8 @@
 #include <oePixelShader.h>
 #include <oeVertexShader.h>
 #include <oeBuffer.h>
+#include <oeMatrix4D.h>
+
 
 namespace oeEngineSDK {
   class OE_CORE_EXPORT OECustomAplication : public CApplicationBase
@@ -23,5 +25,9 @@ namespace oeEngineSDK {
     oeInputLayout m_inputLayout;
     CVertexShader m_vertexShader;
     CPixelShader m_pixelShader;
+    Matrix4 m_MatxView;
+    Matrix4 m_MatProjection;
+    Matrix4 m_MatWorld;
+    
   };
 }
