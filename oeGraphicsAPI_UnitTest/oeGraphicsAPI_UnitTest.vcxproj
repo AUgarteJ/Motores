@@ -157,6 +157,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GoogleTest_Graphics.cpp" />
+    <ClCompile Include="src\oeAplicationCustom.cpp" />
+    <ClCompile Include="src\oeunitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AplicationGrafics.h" />

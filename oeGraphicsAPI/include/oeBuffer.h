@@ -33,6 +33,11 @@ namespace oeEngineSDK
     {
       return reinterpret_cast<void*>(m_Buffer);
     }
+
+    bool isBufferInitialized() {
+      return nullptr != m_Buffer;
+    }
+
   private:
     ID3D11Buffer* m_Buffer;
 
@@ -43,16 +48,10 @@ namespace oeEngineSDK
   {
   public:
     CBuffer() {};
-
-
-
-
     virtual ~CBuffer() {}
-    BufferData* m_BufferData;
-    virtual void Create(const CDevice* pDevice, int32 flags)
-    {
 
-    }
+    BufferData* m_BufferData;
+    virtual void Create(const CDevice* pDevice, int32 flags) {}
 
     virtual void SetBuffer(const CDeviceContext* pDeviceContext, uint32 StartSlot = 0) {}
     virtual void Destroy() {}
@@ -145,7 +144,8 @@ namespace oeEngineSDK
   void CVertexBuffer<T>::Remove(unsigned int nvertex, unsigned int count)
   {
     m_vertexArray.erase(m_vertexArray.begin() + nvertex,
-      (m_vertexArray.begin() + nvertex) + (count - 1));
+      (m_vertexArray.begin() + nvertex) + (count));
+   
   }
 
   template<typename T>
@@ -179,7 +179,13 @@ namespace oeEngineSDK
     vertexBufferDesc.StructureByteStride = 0;
 
     oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+    if (nullptr == pGraphicsAPI) {
+      return;
+    }
     ID3D11Device* pDevice = reinterpret_cast<ID3D11Device*>(pGraphicsAPI->m_Device.getObject());
+    if (nullptr == pDevice) {
+      return;
+    }
 
     D3D11_SUBRESOURCE_DATA srData;
     srData.pSysMem = &m_vertexArray[0];
@@ -257,10 +263,14 @@ namespace oeEngineSDK
   void oeIndexBuffer<T>::Remove(unsigned int nIndex, unsigned int count)
   {
     m_indexArray.erase(m_indexArray.begin() + nIndex,
-      (m_indexArray.begin() + nIndex) + (count - 1));
+      (m_indexArray.begin() + nIndex) + (count ));
   }
 
-
+  template<typename T>
+  void oeIndexBuffer<T>::Clear()
+  {
+    m_indexArray.clear();
+  }
 
   template<class T>
   void oeIndexBuffer<T>::CreateHardwareBuffer(int usageFlag)
@@ -292,7 +302,13 @@ namespace oeEngineSDK
     indexBufferDesc.StructureByteStride = 0;
 
     oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+    if (nullptr == pGraphicsAPI) {
+      return;
+    }
     ID3D11Device* pDevice = reinterpret_cast<ID3D11Device*>(pGraphicsAPI->m_Device.getObject());
+    if (nullptr == pDevice) {
+      return;
+    }
 
     ID3D11Buffer** pBuffer = reinterpret_cast<ID3D11Buffer**>(m_BufferData->GetReference());
     HRESULT result = pDevice->CreateBuffer(&indexBufferDesc, &srData, pBuffer);
