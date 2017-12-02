@@ -43,6 +43,29 @@ namespace oeEngineSDK {
     m_inputLayout.SetHardwareLayout(&pGraphics->m_DeviceContext);
     pGraphics->m_DeviceContext.setTopology();
     
+    int iCBSize = sizeof(Matrix4) * 3;
+
+    m_ConstantBuffer.CreateCB(iCBSize);
+
+    Matrix4 Array[3];
+    Array[0].m_Elements.m00 = 1;
+    Array[0].m_Elements.m11 = 1;
+    Array[0].m_Elements.m22 = 1;
+    Array[0].m_Elements.m33 = 1;
+
+    Array[1].m_Elements.m00 = 1;
+    Array[1].m_Elements.m11 = 1;
+    Array[1].m_Elements.m22 = 1;
+    Array[1].m_Elements.m33 = 1;
+
+    Array[2].m_Elements.m00 = 1;
+    Array[2].m_Elements.m11 = 1;
+    Array[2].m_Elements.m22 = 1;
+    Array[2].m_Elements.m33 = 1;
+
+    m_ConstantBuffer.Update(Array, iCBSize);
+
+
     m_inputLayout.SetHardwareLayout(&pGraphics->m_DeviceContext);
     m_vertexShader.SetShader(&pGraphics->m_DeviceContext);
     m_pixelShader.SetShader(&pGraphics->m_DeviceContext);

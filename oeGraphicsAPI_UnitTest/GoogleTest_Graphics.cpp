@@ -43,12 +43,12 @@ TEST(Graphics, VertexBuffer)
  m_vertexBuffer.Clear();
  EXPECT_TRUE(m_vertexBuffer.getVertexCount() == 0);
 
-// Create HNardware Buffer
+// Create Hardware Buffer
  m_vertexBuffer.Add(myVector4);
  m_vertexBuffer.CreateHardwareBuffer(0x00);
  EXPECT_TRUE(m_vertexBuffer.m_BufferData->isBufferInitialized());
  
- // Set Hardware Buffer
+ 
 
 }
 
@@ -82,7 +82,12 @@ TEST(Graphics, IndexBuffer)
   m_indexBuffer.Clear();
   EXPECT_TRUE(m_indexBuffer.getIndexCount() == 0);
 
+  // Create HNardware Buffer
+  m_indexBuffer.Add(2);
+  m_indexBuffer.CreateHardwareBuffer(0x00);
+  EXPECT_TRUE(m_indexBuffer.m_BufferData->isBufferInitialized());
 
+  
 }
 
 TEST(Graphics, loadModel)
@@ -112,6 +117,24 @@ TEST(Graphics, Mesh_Index)
   m_myMesh.m_indexBuffer.Add(Array, 3);
 
   EXPECT_TRUE(m_myMesh.m_indexBuffer.getIndexCount() == 4);
+ 
+  //Remove
+  m_myMesh.m_indexBuffer.Remove(0);
+  EXPECT_TRUE(m_myMesh.m_indexBuffer.getIndexCount() == 3);
+
+  m_myMesh.m_indexBuffer.Remove(1, 2);
+  EXPECT_TRUE(m_myMesh.m_indexBuffer.getIndexCount() == 1);
+  
+  //Clear
+
+  m_myMesh.m_indexBuffer.Clear();
+  EXPECT_TRUE(m_myMesh.m_indexBuffer.getIndexCount() == 0);
+
+  // Create HNardware Buffer
+  m_myMesh.m_indexBuffer.Add(2);
+  m_myMesh.m_indexBuffer.CreateHardwareBuffer(0x00);
+  EXPECT_TRUE(m_myMesh.m_indexBuffer.m_BufferData->isBufferInitialized());
+
 }
 
 TEST(Graphics, Mesh_Vertex)
@@ -138,9 +161,30 @@ TEST(Graphics, Mesh_Vertex)
   m_myMesh.m_vetexBuffer.Add(myVector4);
 
   EXPECT_TRUE(m_myMesh.m_vetexBuffer.getVertexCount() == 4);
+
+  //Remove
+  m_myMesh.m_vetexBuffer.Remove(0);
+  EXPECT_TRUE(m_myMesh.m_vetexBuffer.getVertexCount() == 3);
+
+  m_myMesh.m_vetexBuffer.Remove(1, 2);
+  EXPECT_TRUE(m_myMesh.m_vetexBuffer.getVertexCount() == 1);
+
+  //Clear
+  m_myMesh.m_vetexBuffer.Clear();
+  EXPECT_TRUE(m_myMesh.m_vetexBuffer.getVertexCount() == 0);
+
+  // Create Hardware Buffer
+  m_myMesh.m_vetexBuffer.Add(myVector4);
+  m_myMesh.m_vetexBuffer.CreateHardwareBuffer(0x00);
+  EXPECT_TRUE(m_myMesh.m_vetexBuffer.m_BufferData->isBufferInitialized());
 }
 
-TEST(Graphics, ConstantBuffer)
-{
- 
-}
+//TEST(Graphics, ConstantBuffer)
+//{
+//  CConstantBuffer ConstBuffer;
+//  char  Var=5;
+//
+//  ConstBuffer.CreateCB(size_t(Var));
+//  EXPECT_TRUE(ConstBuffer.m_BufferData->isBufferInitialized());
+//
+//}

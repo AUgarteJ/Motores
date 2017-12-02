@@ -226,6 +226,7 @@ namespace oeEngineSDK
     uint32 stride = sizeof(T);
     ID3D11Buffer* pBuffer = reinterpret_cast<ID3D11Buffer*>(m_BufferData->GetObject());
     pDeviceContext->IASetIndexBuffer(pBuffer, DXGI_FORMAT_R32_UINT, 0);
+    
   }
 
   template <class T>
@@ -322,4 +323,67 @@ namespace oeEngineSDK
 
   typedef oeIndexBuffer<unsigned short> oeIndexBuffer16;
   typedef oeIndexBuffer<unsigned int> oeIndexBuffer32;
+
+  ///////Constant Buffer/////
+
+  class CConstantBuffer : public CBuffer
+  {
+  public:
+    CConstantBuffer()
+    {
+      m_BufferData = new BufferData();
+    }
+    ~CConstantBuffer()
+    {
+      delete m_BufferData;
+    }
+
+    void  CreateCB(size_t Size) 
+    {
+      D3D11_BUFFER_DESC constantBufferDesc;
+      memset(&constantBufferDesc, 0, sizeof(D3D11_BUFFER_DESC));
+
+      constantBufferDesc.ByteWidth = sizeof(char) * Size;
+      constantBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+      constantBufferDesc.CPUAccessFlags = 0;
+      constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+      constantBufferDesc.MiscFlags = 0;
+      constantBufferDesc.StructureByteStride = 0;
+
+      oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+      if (nullptr == pGraphicsAPI) {
+        return;
+      }
+      ID3D11Device* pDevice = reinterpret_cast<ID3D11Device*>(pGraphicsAPI->m_Device.getObject());
+      if (nullptr == pDevice) {
+        return;
+      }
+
+      ID3D11Buffer** pBuffer = reinterpret_cast<ID3D11Buffer**>(m_BufferData->GetReference());
+      HRESULT result = pDevice->CreateBuffer(&constantBufferDesc, nullptr, pBuffer);
+
+      if (FAILED(result))
+      {
+        return;
+      }
+
+   }
+
+
+
+    void Update(void* Data, size_t Size)
+    {
+      ID3D11Buffer* pBuffer = reinterpret_cast<ID3D11Buffer*>(m_BufferData->GetObject());
+
+      oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+      ID3D11DeviceContext* pDeviceContext = reinterpret_cast<ID3D11DeviceContext*>
+        (pGraphicsAPI->m_DeviceContext.getObject());
+      pDeviceContext->UpdateSubresource(pBuffer, 0, NULL, Data, 0, 0);
+    }
+
+  };
+
+
+
 }
+

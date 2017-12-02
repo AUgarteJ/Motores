@@ -161,7 +161,6 @@
     <ClCompile Include="src\oeunitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AplicationGrafics.h" />
     <ClInclude Include="include\oeAplicationCustom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -18,8 +18,8 @@ namespace oeEngineSDK
     CModel();
     ~CModel();
     void loadModel(const String& fileName);
-    void CreateVertexBuffer();
-    void CreateIndexBuffer ();
+  /*  void CreateVertexBuffer();
+    void CreateIndexBuffer ();*/
   
     void render(const CDeviceContext& DeviceContext);
   };

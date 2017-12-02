@@ -26,9 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AplicationGrafics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\oeAplicationCustom.h">
       <Filter>Header Files</Filter>
     </ClInclude>

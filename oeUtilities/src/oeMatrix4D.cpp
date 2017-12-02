@@ -5,6 +5,7 @@ namespace oeEngineSDK
 
 Matrix4::Matrix4()
   {
+  memset(this, 0, sizeof(Matrix4));
   }
 
 
