@@ -8,8 +8,9 @@
 #include "oeRenderTargetView.h"
 #include "oeSwapChain.h"
 
-namespace oeEngineSDK {
 
+namespace oeEngineSDK {
+  class CDepthStencilV;
   class OE_GRAPHICS_API_EXPORT oeGraphicsAPI : public Module<oeGraphicsAPI>
   {
   public:
@@ -17,6 +18,7 @@ namespace oeEngineSDK {
     CDeviceContext          m_DeviceContext;
     CSwapChain              m_SwapChain;
     CRenderTargetView       m_pRenderTargetView;
+    CDepthStencilV*          m_pDepthStencilView;
 
     oeGraphicsAPI() {}
     ~oeGraphicsAPI();

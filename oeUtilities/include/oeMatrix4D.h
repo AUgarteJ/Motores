@@ -28,9 +28,15 @@ namespace oeEngineSDK
     void add(const Matrix4& fMa);//, const Matrix4& fMb);
     void rest(const Matrix4& fMa);//, const Matrix4& fMb);
     Matrix4 mult(const Matrix4& fMa); //Matrix4& fMb);
-
+   
+    Matrix4 projectionFovLH(float FovAngleY, float AspectHByW, float NearZ, float FarZ);
+    Matrix4 lookAtLH(Vector4 EyePosition, Vector4 FocusPosition, Vector4 UpDirection);
+    Vector4 vectorSubtract(Vector4 V1, Vector4 V2);
+    Matrix4 MatrixLooktoLH(Vector4 EyePosition, Vector4 EyeDirection, Vector4 UpDirection);
+   
     void Transposed();//const Matrix4& fMa);
                       //Matrix4 Transposed(const Matrix4& fMa);
+
 
 
     Matrix4();

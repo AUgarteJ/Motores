@@ -1,4 +1,6 @@
 #include "oeGraphicsAPI.h"
+#include "oeBuffer.h"
+
 
 namespace oeEngineSDK{
   oeGraphicsAPI::~oeGraphicsAPI()
@@ -12,8 +14,8 @@ namespace oeEngineSDK{
   int32 oeGraphicsAPI::Initialize(void* pScreenHandle, bool fullscreen, uint32 bbufferCount)
   {
     HRESULT hr = S_OK;
-    D3D_DRIVER_TYPE driverType = D3D_DRIVER_TYPE_NULL;
-    D3D_FEATURE_LEVEL featureLevel = D3D_FEATURE_LEVEL_11_0;
+    D3D_DRIVER_TYPE driverType;
+    D3D_FEATURE_LEVEL featureLevel;
 
     if (pScreenHandle == nullptr)
       return 0;
@@ -91,6 +93,24 @@ namespace oeEngineSDK{
     pBackBuffer->Release();
     if (FAILED(hr))
       return hr;
+
+    //Create DepthStencil View
+    m_pDepthStencilView = new CDepthStencilV;
+    m_pDepthStencilView->CreateDSV(width, height);
+
+    ID3D11RenderTargetView* pRTV = reinterpret_cast<ID3D11RenderTargetView*>(m_pRenderTargetView.getObject());
+
+    pDeviceContext->OMSetRenderTargets(1, &pRTV, m_pDepthStencilView->m_pDepthSV);
+
+    // Setup the viewport
+    D3D11_VIEWPORT vp;
+    vp.Width = (FLOAT)width;
+    vp.Height = (FLOAT)height;
+    vp.MinDepth = 0.0f;
+    vp.MaxDepth = 1.0f;
+    vp.TopLeftX = 0;
+    vp.TopLeftY = 0;
+    pDeviceContext->RSSetViewports(1, &vp);
 
     return int32();
   }

@@ -13,13 +13,13 @@ namespace oeEngineSDK
     //Create the vertex shader
     HRESULT hr = pDevice->m_Device->CreatePixelShader(m_pBlob->GetBufferPointer(),
       m_pBlob->GetBufferSize(),
-      NULL,
+      nullptr,
       &m_pIPixelShader);
   }
 
   void CPixelShader::SetShader(CDeviceContext* DeviceContext)
   {
     ID3D11DeviceContext* PDeviceContext = reinterpret_cast<ID3D11DeviceContext*>(DeviceContext->getObject());
-    PDeviceContext->PSSetShader(m_pIPixelShader, NULL, 0);
+    PDeviceContext->PSSetShader(m_pIPixelShader, nullptr, 0);
   }
 }

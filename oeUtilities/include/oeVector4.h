@@ -3,7 +3,7 @@
 #include "oePrerequisites_Utilities.h"
 #include "oePlatformMath.h"
 namespace oeEngineSDK {
-  class OE_UTILITIES_EXPORT Vector4 {
+  class Vector4 {
   public:
     float x;
     float y;
@@ -62,6 +62,17 @@ namespace oeEngineSDK {
     Vector4	Normalize() {
     
       return *this *= 1.0f / Length(); }
+
+    Vector4 NegVector() {
+      Vector4 result;
+
+      result.x = -result.x;
+      result.y = -result.y;
+      result.z = -result.z;
+      result.w = -result.w;
+
+      return result;
+    }
 
     //! Unique Geometric Functions
     /*!

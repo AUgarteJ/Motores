@@ -337,6 +337,30 @@ namespace oeEngineSDK
     {
       delete m_BufferData;
     }
+    
+    void SetVS()
+    {
+      oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+      ID3D11DeviceContext* pDeviceContext = reinterpret_cast<ID3D11DeviceContext*>(pGraphicsAPI->m_DeviceContext.getObject());
+      if (nullptr == pDeviceContext) {
+        return;
+      }
+
+      ID3D11Buffer* pBuffer = reinterpret_cast<ID3D11Buffer*>(m_BufferData->GetObject());
+      pDeviceContext->VSSetConstantBuffers(0, 1, &pBuffer);
+    }
+
+    void SetPS()
+    {
+      oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+      ID3D11DeviceContext* pDeviceContext = reinterpret_cast<ID3D11DeviceContext*>(pGraphicsAPI->m_DeviceContext.getObject());
+      if (nullptr == pDeviceContext) {
+        return;
+      }
+
+      ID3D11Buffer* pBuffer = reinterpret_cast<ID3D11Buffer*>(m_BufferData->GetObject());
+      pDeviceContext->PSSetConstantBuffers(0, 1, &pBuffer);
+    }
 
     void  CreateCB(size_t Size) 
     {
@@ -383,7 +407,53 @@ namespace oeEngineSDK
 
   };
 
+  class CDepthStencilV
+  {
+  public:
+    ID3D11Texture2D* m_pDepthStencil;
+    ID3D11DepthStencilView* m_pDepthSV;
+  
+  public:
+    void CreateDSV(int width, int height) {
+      // Create depth stencil texture
+      D3D11_TEXTURE2D_DESC descDepth;
+      memset(&descDepth, 0, sizeof(descDepth));
+      descDepth.Width = width;
+      descDepth.Height = height;
+      descDepth.MipLevels = 1;
+      descDepth.ArraySize = 1;
+      descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+      descDepth.SampleDesc.Count = 1;
+      descDepth.SampleDesc.Quality = 0;
+      descDepth.Usage = D3D11_USAGE_DEFAULT;
+      descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+      descDepth.CPUAccessFlags = 0;
+      descDepth.MiscFlags = 0;
 
+      oeGraphicsAPI* pGraphicsAPI = g_GraphicsAPI().instancePtr();
+      if (nullptr == pGraphicsAPI) {
+        return;
+      }
+      ID3D11Device* pDevice = reinterpret_cast<ID3D11Device*>(pGraphicsAPI->m_Device.getObject());
+      if (nullptr == pDevice) {
+        return;
+      }
+      HRESULT result =  pDevice->CreateTexture2D(&descDepth, NULL, &m_pDepthStencil);
+      if (FAILED(result))
+        return;
 
+      D3D11_DEPTH_STENCIL_VIEW_DESC  pDepthSVDesc;
+      memset(&pDepthSVDesc, 0, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
+      
+      pDepthSVDesc.Format = descDepth.Format;
+      pDepthSVDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+      pDepthSVDesc.Texture2D.MipSlice = 0;
+      result = pDevice->CreateDepthStencilView(m_pDepthStencil, &pDepthSVDesc, &m_pDepthSV);
+      if (FAILED(result))
+        return;
+
+    }
+    
+  };
 }
 

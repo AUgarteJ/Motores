@@ -32,6 +32,7 @@ namespace oeEngineSDK {
     Matrix4 m_MatProjection;
     Matrix4 m_MatWorld;
     CConstantBuffer m_ConstantBuffer;
+    CDepthStencilV m_DSV;
     
   };
 }

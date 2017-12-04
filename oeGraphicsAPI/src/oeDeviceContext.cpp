@@ -1,4 +1,5 @@
 #include "oeDeviceContext.h"
+#include "oeBuffer.h"
 
 namespace oeEngineSDK
 {
@@ -37,7 +38,12 @@ namespace oeEngineSDK
     ID3D11RenderTargetView* pRTV = reinterpret_cast<ID3D11RenderTargetView*>(rtv.getObject());
     p_DeviceContext->ClearRenderTargetView(pRTV, color);
   }
-  
+
+  void CDeviceContext::clearDepthStencilView(const CDepthStencilV& dsv, uint32 flags, float Depth, uint8 Stencil)
+  {
+    p_DeviceContext->ClearDepthStencilView(dsv.m_pDepthSV, flags, Depth, Stencil);
+  }
+
   void CDeviceContext::setTopology()
   {
     p_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

@@ -16,6 +16,7 @@ namespace oeEngineSDK
                                                         NULL,
                                                         &m_pIVertexShader);
   }
+
   void CVertexShader::SetShader(CDeviceContext* DeviceContext)
   {
     ID3D11DeviceContext* PDeviceContext = reinterpret_cast<ID3D11DeviceContext*>(DeviceContext->getObject());

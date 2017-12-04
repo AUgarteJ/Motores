@@ -124,8 +124,7 @@ Matrix4 Matrix4::mult(const Matrix4& fMa)
 
   void Matrix4::Transposed()
   {
-  Matrix4 Temp;
-
+    Matrix4 Temp;
 
     for (int i = 0; i < 4; i++)
     {
@@ -134,9 +133,6 @@ Matrix4 Matrix4::mult(const Matrix4& fMa)
         Temp.fMatrix[i][j] = fMatrix[i][j];
       }
     }
-
-
-
 
     for (int i = 0; i < 4; i++)
     {
@@ -147,6 +143,82 @@ Matrix4 Matrix4::mult(const Matrix4& fMa)
     }
   }
 
- 
+  Matrix4  Matrix4 :: projectionFovLH(float FovAngleY, float AspectHByW, float NearZ, float FarZ)
+  {
+    float    SinFov;
+    float    CosFov;
+
+    SinFov = CMath::Sine(FovAngleY * 0.5f);
+    CosFov = CMath::Cosine(FovAngleY * 0.5f);
+
+    float Height = CosFov / SinFov;
+    float Width = Height / AspectHByW;
+    float fRange = FarZ / (FarZ - NearZ);
+
+    Matrix4 M;
+    M.m_Elements.m00 = Width;
+    M.m_Elements.m01 = 0.0f;
+    M.m_Elements.m02 = 0.0f;
+    M.m_Elements.m03 = 0.0f;
+
+    M.m_Elements.m10 = 0.0f;
+    M.m_Elements.m11 = Height;
+    M.m_Elements.m12 = 0.0f;
+    M.m_Elements.m13 = 0.0f;
+
+    M.m_Elements.m20 = 0.0f;
+    M.m_Elements.m21 = 0.0f;
+    M.m_Elements.m22 = fRange;
+    M.m_Elements.m23 = 0.0f;
+
+    M.m_Elements.m30 = 0.0f;
+    M.m_Elements.m31 = 0.0f;
+    M.m_Elements.m32 = -fRange * NearZ;
+    M.m_Elements.m33 = 0.0f;
+
+    return M;
+
+  }
+  Vector4 Matrix4::vectorSubtract(Vector4 V1, Vector4 V2)
+  {
+    Vector4 Result;
+
+    Result.x = V1.x - V2.x;
+    Result.y = V1.y - V2.y;
+    Result.z = V1.z - V2.z;
+    Result.w = V1.w - V2.w;
+    return Result;
+
+  }
+  Matrix4 Matrix4::MatrixLooktoLH(Vector4 EyePosition, Vector4 EyeDirection, Vector4 UpDirection)
+  {
+    Matrix4 M;
+    
+    Vector4 ZAxis = EyeDirection.Normalize();
+    Vector4 XAxis = UpDirection.CrossProduct(ZAxis).Normalize();
+    Vector4 YAxis = ZAxis.CrossProduct(XAxis);
+
+    for (uint32 RowIndex = 0; RowIndex < 3; ++RowIndex)
+    {
+      M.fMatrix[RowIndex][0] = (&XAxis.x)[RowIndex];
+      M.fMatrix[RowIndex][1] = (&YAxis.x)[RowIndex];
+      M.fMatrix[RowIndex][2] = (&ZAxis.x)[RowIndex];
+      M.fMatrix[RowIndex][3] = 0.0f;
+    }
+    
+    Vector4 negEyePosition = EyePosition.NegVector();
+    M.fMatrix[3][0] = negEyePosition.DotProduct(XAxis);
+    M.fMatrix[3][1] = negEyePosition.DotProduct(YAxis);
+    M.fMatrix[3][2] = negEyePosition.DotProduct(ZAxis);
+    M.fMatrix[3][3] = 1.0f;
+
+    return M;
+
+  }
+  Matrix4 Matrix4::lookAtLH(Vector4 EyePosition, Vector4 FocusPosition, Vector4 UpDirection)
+  { 
+    Vector4 EyeDirection = FocusPosition - EyePosition;
+    return MatrixLooktoLH(EyePosition, EyeDirection, UpDirection);
+  }
 
 }

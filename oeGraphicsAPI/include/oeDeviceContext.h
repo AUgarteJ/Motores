@@ -3,12 +3,14 @@
 #include "oeRenderTargetView.h"
 
 
+
 #if OE_ACTIVE_PLATFORM == OE_PLATFORM_WINDOWS
 #include <d3d11.h>
 #endif
 
 namespace oeEngineSDK
 {
+  class CDepthStencilV;
   class OE_GRAPHICS_API_EXPORT CDeviceContext
   {
   private:
@@ -23,6 +25,7 @@ namespace oeEngineSDK
     void** getReference();
 
     void clearRenderTarget(const CRenderTargetView& rtv, float color[4]);
+    void clearDepthStencilView(const CDepthStencilV& dsv, uint32 flags, float Depth, uint8 Stencil);
     void setTopology();
   };
 
